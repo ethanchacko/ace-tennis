@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xy1bdy6lms37"]
+
+[ext_resource type="Script" uid="uid://cohqymgarb0sx" path="res://asessts/scripts/ball_col.gd" id="1_xtm2n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h54fv"]
+radius = 45.0
+
+[node name="ball_col" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xtm2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h54fv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
