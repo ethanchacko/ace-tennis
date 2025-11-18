@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp7aeh3ksn53o"]
+
+[ext_resource type="Script" uid="uid://bsttl8yiw125m" path="res://asessts/scripts/opp_recover.gd" id="1_ov70c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jb5qe"]
+radius = 39.0128
+
+[node name="opp_recover" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ov70c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jb5qe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

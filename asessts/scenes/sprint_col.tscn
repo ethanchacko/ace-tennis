@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bscicuxm230js"]
+
+[ext_resource type="Script" uid="uid://buj1smdjqbm1h" path="res://asessts/scripts/sprint_col.gd" id="1_bwlxf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_taff3"]
+radius = 76.2365
+
+[node name="sprint_col" type="Area2D"]
+script = ExtResource("1_bwlxf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_taff3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
