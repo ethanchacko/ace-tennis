@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bmva1i8iehd3b"]
 
 [ext_resource type="PackedScene" uid="uid://cs808uh8ckwel" path="res://asessts/scenes/player.tscn" id="1_qat0m"]
-[ext_resource type="PackedScene" uid="uid://dhkntnvkr0h1l" path="res://asessts/scenes/ball.tscn" id="2_kgltk"]
 [ext_resource type="PackedScene" uid="uid://dxpvgjseo0pf6" path="res://asessts/scenes/opp.tscn" id="3_y0ob4"]
+[ext_resource type="PackedScene" uid="uid://l8lq2bnpbpwe" path="res://ball.tscn" id="3_ymrpe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgltk"]
 size = Vector2(30, 694)
@@ -21,36 +21,36 @@ size = Vector2(810, 16)
 [node name="game" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_qat0m")]
-position = Vector2(357, 780)
-
-[node name="ball" parent="." instance=ExtResource("2_kgltk")]
-position = Vector2(362, 517)
+position = Vector2(323, 638)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="wall_1" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-20, 525)
+position = Vector2(13, 390)
 shape = SubResource("RectangleShape2D_kgltk")
 
 [node name="wall_2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(664, 523)
+position = Vector2(630, 381)
 shape = SubResource("RectangleShape2D_kgltk")
 
 [node name="wall_3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(380, 175)
+position = Vector2(346, 33)
 shape = SubResource("RectangleShape2D_y0ob4")
 
 [node name="wall_4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(363, 885)
+position = Vector2(329, 743)
 shape = SubResource("RectangleShape2D_ymrpe")
 
 [node name="opp" parent="." instance=ExtResource("3_y0ob4")]
-position = Vector2(362, 307)
+position = Vector2(328, 165)
 
 [node name="net" type="StaticBody2D" parent="."]
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_y0ob4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="net"]
-position = Vector2(371, 496)
+position = Vector2(337, 354)
 shape = SubResource("RectangleShape2D_vyx73")
+
+[node name="Ball" parent="." instance=ExtResource("3_ymrpe")]
+position = Vector2(434, 260)

@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxpvgjseo0pf6"]
+[gd_scene load_steps=7 format=3 uid="uid://dxpvgjseo0pf6"]
 
 [ext_resource type="Script" uid="uid://bhs0w61dcvwv3" path="res://asessts/scripts/opp.gd" id="1_03lol"]
 [ext_resource type="Texture2D" uid="uid://c6sbkhhxppj57" path="res://asessts/sprites/sprite_sheet-OLD (1).png" id="1_tlwd1"]
-[ext_resource type="PackedScene" uid="uid://bscicuxm230js" path="res://asessts/scenes/sprint_col.tscn" id="3_jwxko"]
-[ext_resource type="PackedScene" uid="uid://dp7aeh3ksn53o" path="res://asessts/opp_recover.tscn" id="4_8qo8e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03lol"]
 atlas = ExtResource("1_tlwd1")
@@ -23,6 +21,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_03lol"]
 radius = 37.054
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwxko"]
+radius = 44.0454
+
 [node name="opp" type="CharacterBody2D"]
 collision_mask = 5
 motion_mode = 1
@@ -35,6 +36,14 @@ sprite_frames = SubResource("SpriteFrames_jwxko")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_03lol")
 
-[node name="sprint_col" parent="." instance=ExtResource("3_jwxko")]
+[node name="ball_collided" type="Area2D" parent="."]
 
-[node name="opp_recover" parent="." instance=ExtResource("4_8qo8e")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball_collided"]
+shape = SubResource("CircleShape2D_jwxko")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="ball_collided" to="." method="_on_ball_collide_body_entered"]
+[connection signal="body_entered" from="ball_collided" to="." method="_on_ball_collided_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

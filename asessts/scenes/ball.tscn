@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhkntnvkr0h1l"]
+[gd_scene load_steps=8 format=3 uid="uid://dhkntnvkr0h1l"]
 
 [ext_resource type="Texture2D" uid="uid://c6sbkhhxppj57" path="res://asessts/sprites/sprite_sheet-OLD (1).png" id="1_60jsf"]
 [ext_resource type="Script" uid="uid://c7eorocslgwlp" path="res://asessts/scripts/ball.gd" id="1_127v1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_127v1"]
+bounce = 0.02
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_127v1"]
 atlas = ExtResource("1_60jsf")
@@ -21,8 +24,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_50en1"]
 radius = 13.0
 
-[node name="ball" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_127v1"]
+radius = 12.0
+
+[node name="ball" type="RigidBody2D" groups=["ball"]]
 collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_127v1")
 script = ExtResource("1_127v1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -30,3 +37,10 @@ sprite_frames = SubResource("SpriteFrames_wx1rv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_50en1")
+
+[node name="player_collide" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_collide"]
+shape = SubResource("CircleShape2D_127v1")
+
+[connection signal="body_entered" from="player_collide" to="." method="_on_player_collide_body_entered"]

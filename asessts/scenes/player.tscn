@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cabsi0cqyw0fe" path="res://asessts/scripts/player.gd" id="1_bgr1k"]
 [ext_resource type="Texture2D" uid="uid://c6sbkhhxppj57" path="res://asessts/sprites/sprite_sheet-OLD (1).png" id="2_n0b8a"]
-[ext_resource type="PackedScene" uid="uid://xy1bdy6lms37" path="res://asessts/scenes/ball_col.tscn" id="3_n0b8a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("2_n0b8a")
@@ -27,7 +26,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0b8a"]
-radius = 38.0
+radius = 41.0122
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bgr1k"]
+radius = 43.0116
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 5
@@ -41,6 +43,11 @@ sprite_frames = SubResource("SpriteFrames_hqtel")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n0b8a")
 
-[node name="ball_col" parent="." instance=ExtResource("3_n0b8a")]
-
 [node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="ball_collision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball_collision"]
+shape = SubResource("CircleShape2D_bgr1k")
+
+[connection signal="body_entered" from="ball_collision" to="." method="_on_ball_collision_body_entered"]
