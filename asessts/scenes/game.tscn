@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmva1i8iehd3b"]
+[gd_scene load_steps=11 format=3 uid="uid://bmva1i8iehd3b"]
 
 [ext_resource type="PackedScene" uid="uid://cs808uh8ckwel" path="res://asessts/scenes/player.tscn" id="1_qat0m"]
 [ext_resource type="PackedScene" uid="uid://dxpvgjseo0pf6" path="res://asessts/scenes/opp.tscn" id="3_y0ob4"]
-[ext_resource type="PackedScene" uid="uid://l8lq2bnpbpwe" path="res://ball.tscn" id="3_ymrpe"]
+[ext_resource type="PackedScene" uid="uid://l8lq2bnpbpwe" path="res://asessts/ball.tscn" id="3_ymrpe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kgltk"]
 size = Vector2(30, 694)
@@ -12,6 +12,12 @@ size = Vector2(805.5, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymrpe"]
 size = Vector2(863, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nptb"]
+size = Vector2(239.5, 827)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nm838"]
+size = Vector2(246, 826)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y0ob4"]
 
@@ -44,6 +50,20 @@ shape = SubResource("RectangleShape2D_ymrpe")
 [node name="opp" parent="." instance=ExtResource("3_y0ob4")]
 position = Vector2(328, 165)
 
+[node name="opp_detect_left" type="Area2D" parent="opp"]
+position = Vector2(-328, -165)
+collision_mask = 2
+
+[node name="detect_left" type="CollisionShape2D" parent="opp/opp_detect_left"]
+position = Vector2(165, 452.5)
+shape = SubResource("RectangleShape2D_4nptb")
+
+[node name="opp_detect_right" type="Area2D" parent="opp"]
+
+[node name="detect_right" type="CollisionShape2D" parent="opp/opp_detect_right"]
+position = Vector2(167, 286)
+shape = SubResource("RectangleShape2D_nm838")
+
 [node name="net" type="StaticBody2D" parent="."]
 collision_layer = 4
 physics_material_override = SubResource("PhysicsMaterial_y0ob4")
@@ -54,3 +74,20 @@ shape = SubResource("RectangleShape2D_vyx73")
 
 [node name="Ball" parent="." instance=ExtResource("3_ymrpe")]
 position = Vector2(434, 260)
+
+[node name="far_right" type="Marker2D" parent="."]
+position = Vector2(568, 124)
+
+[node name="close_right" type="Marker2D" parent="."]
+position = Vector2(409, 87)
+
+[node name="close_left" type="Marker2D" parent="."]
+position = Vector2(247, 87)
+
+[node name="far_left" type="Marker2D" parent="."]
+position = Vector2(83, 124)
+
+[connection signal="body_entered" from="opp/opp_detect_left" to="opp" method="_on_opp_detect_left_body_entered"]
+[connection signal="body_exited" from="opp/opp_detect_left" to="opp" method="_on_opp_detect_left_body_exited"]
+[connection signal="body_entered" from="opp/opp_detect_right" to="opp" method="_on_opp_detect_right_body_entered"]
+[connection signal="body_exited" from="opp/opp_detect_right" to="opp" method="_on_opp_detect_right_body_exited"]

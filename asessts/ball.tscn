@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://l8lq2bnpbpwe"]
 
-[ext_resource type="Script" uid="uid://c6juy2yjt4syq" path="res://ball.gd" id="1_41u45"]
+[ext_resource type="Script" uid="uid://c6juy2yjt4syq" path="res://asessts/scripts/ball.gd" id="1_41u45"]
 [ext_resource type="Texture2D" uid="uid://c6sbkhhxppj57" path="res://asessts/sprites/sprite_sheet-OLD (1).png" id="1_a6fhp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sdcyc"]
 radius = 12.0
 
 [node name="Ball" type="CharacterBody2D" groups=["ball"]]
+collision_layer = 3
 script = ExtResource("1_41u45")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

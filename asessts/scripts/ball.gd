@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var player: CharacterBody2D = $"../player"
 #@onready var ball_col: BallCollision = $"../player/ball_col"
 
 const SPEED: int = 5
@@ -10,6 +11,9 @@ func _ready() -> void:
 @export var can_bounce: bool = true
 
 func _physics_process(delta: float) -> void:
+	
+	self.look_at(get_global_mouse_position())
+	
 	var collide := move_and_collide(velocity)
 	
 	if can_bounce == true:
@@ -22,5 +26,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("hit"):
 			#print("Collison success")
 			can_bounce = true
-			velocity = Vector2(0, SPEED)
+			var direction = Vector2.RIGHT.rotated(player.get_node("Marker2D").global_rotation)
+			velocity = direction * SPEED
 	

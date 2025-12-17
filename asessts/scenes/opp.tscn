@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxpvgjseo0pf6"]
+[gd_scene load_steps=8 format=3 uid="uid://dxpvgjseo0pf6"]
 
 [ext_resource type="Script" uid="uid://bhs0w61dcvwv3" path="res://asessts/scripts/opp.gd" id="1_03lol"]
 [ext_resource type="Texture2D" uid="uid://c6sbkhhxppj57" path="res://asessts/sprites/sprite_sheet-OLD (1).png" id="1_tlwd1"]
@@ -19,10 +19,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03lol"]
-radius = 37.054
+radius = 39.0512
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwxko"]
-radius = 44.0454
+radius = 42.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03lol"]
+size = Vector2(1149, 185)
 
 [node name="opp" type="CharacterBody2D"]
 collision_mask = 5
@@ -42,8 +45,18 @@ shape = SubResource("CircleShape2D_03lol")
 shape = SubResource("CircleShape2D_jwxko")
 
 [node name="Timer" type="Timer" parent="."]
-one_shot = true
+wait_time = 3.0
+autostart = true
+
+[node name="chase_detect" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chase_detect"]
+position = Vector2(0.5, 49.5)
+shape = SubResource("RectangleShape2D_03lol")
 
 [connection signal="body_entered" from="ball_collided" to="." method="_on_ball_collide_body_entered"]
 [connection signal="body_entered" from="ball_collided" to="." method="_on_ball_collided_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="chase_detect" to="." method="_on_chase_detect_body_entered"]
+[connection signal="body_exited" from="chase_detect" to="." method="_on_chase_detect_body_exited"]
