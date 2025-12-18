@@ -1,7 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://l8lq2bnpbpwe"]
+[gd_scene load_steps=5 format=3 uid="uid://l8lq2bnpbpwe"]
 
 [ext_resource type="Script" uid="uid://c6juy2yjt4syq" path="res://asessts/scripts/ball.gd" id="1_41u45"]
-[ext_resource type="Texture2D" uid="uid://c6sbkhhxppj57" path="res://asessts/sprites/sprite_sheet-OLD (1).png" id="1_a6fhp"]
+[ext_resource type="Texture2D" uid="uid://tlmra33m8hja" path="res://asessts/sprites/New Piskel (3).png" id="2_qs5p2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iv2of"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qs5p2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sdcyc"]
 radius = 12.0
@@ -10,10 +21,10 @@ radius = 12.0
 collision_layer = 3
 script = ExtResource("1_41u45")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_a6fhp")
-region_enabled = true
-region_rect = Rect2(192, 0, 32, 32)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.125, 3.625)
+scale = Vector2(2.38281, 2.35156)
+sprite_frames = SubResource("SpriteFrames_iv2of")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sdcyc")

@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var far_left: Marker2D = $"../far_left"
 @onready var opp_detect_left: Area2D = $"../opp_detect_left"
 @onready var opp_detect_right: Area2D = $"../opp_detect_right"
+@onready var up_left: Marker2D = $"../up_left"
+@onready var up_right: Marker2D = $"../up_right"
 
 
 
@@ -23,10 +25,10 @@ extends CharacterBody2D
 var can_recover: bool = false
 
 var steer_force = 6700
-var max_speed : float = 500.0
+var max_speed : float = 600.0
 
 #var starting_location: Vector2;
-var speed : float = 400
+var speed : float = 500
 
 var acceleration = Vector2.ZERO
 var target = null
@@ -57,8 +59,8 @@ func seek():
 func _ready() -> void:
 	#ball = get_parent().get_node("ball")
 	#starting_location = self.position;
-	patrol_left_points = [close_left.position, far_left.position]
-	patrol_right_points = [close_right.position, far_right.position]
+	patrol_left_points = [close_left.position, far_left.position, up_left.position]
+	patrol_right_points = [close_right.position, far_right.position, up_right.position]
 	#recovering = false
 	
 	
@@ -68,13 +70,14 @@ func patrol(delta: float) -> void:
 		var target_point: Vector2 = patrol_left_points[current_patrol_index]
 		var direction_to_point: Vector2 = (target_point - global_position).normalized()
 		velocity = lerp(velocity, direction_to_point * speed, 5.0 * delta)
-		if global_position.distance_to(target_point) < 5.0:
+		if global_position.distance_to(target_point) < 10.0:
 			current_patrol_index = (current_patrol_index + 1) % patrol_left_points.size()
-	elif can_right == true:
+			
+	if can_right == true:
 		var target_point: Vector2 = patrol_right_points[current_patrol_index]
 		var direction_to_point: Vector2 = (target_point - global_position).normalized()
 		velocity = lerp(velocity, direction_to_point * speed, 5.0 * delta)
-		if global_position.distance_to(target_point) < 5.0:
+		if global_position.distance_to(target_point) < 10.0:
 			current_patrol_index = (current_patrol_index + 1) % patrol_right_points.size()
 
 
@@ -108,7 +111,6 @@ func _physics_process(delta: float) -> void:
 			##recovering = false
 				#timer.start()
 	else:
-		print("chasing")
 		target = ball.position
 		
 		

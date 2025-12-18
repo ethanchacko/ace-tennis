@@ -1,24 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs808uh8ckwel"]
+[gd_scene load_steps=7 format=3 uid="uid://cs808uh8ckwel"]
 
 [ext_resource type="Script" uid="uid://cabsi0cqyw0fe" path="res://asessts/scripts/player.gd" id="1_bgr1k"]
-[ext_resource type="Texture2D" uid="uid://c6sbkhhxppj57" path="res://asessts/sprites/sprite_sheet-OLD (1).png" id="2_n0b8a"]
+[ext_resource type="Texture2D" uid="uid://c18m5chxjw0ss" path="res://asessts/sprites/New Piskel.png" id="2_bgr1k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
-atlas = ExtResource("2_n0b8a")
-region = Rect2(320, 768, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
-atlas = ExtResource("2_n0b8a")
-region = Rect2(352, 768, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0b8a"]
+atlas = ExtResource("2_bgr1k")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_onrkg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i3pqv")
+"texture": SubResource("AtlasTexture_n0b8a")
 }],
 "loop": true,
 "name": &"default",
@@ -37,7 +30,8 @@ motion_mode = 1
 script = ExtResource("1_bgr1k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.375, 2.375)
+position = Vector2(2, 2)
+scale = Vector2(4.15625, 4.15625)
 sprite_frames = SubResource("SpriteFrames_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

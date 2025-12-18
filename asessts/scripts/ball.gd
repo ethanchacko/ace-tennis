@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = $"../player"
 #@onready var ball_col: BallCollision = $"../player/ball_col"
 
-const SPEED: int = 5
+const SPEED: int = 8
 
 func _ready() -> void:
 	velocity = Vector2(0, SPEED)
