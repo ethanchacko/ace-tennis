@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var opp_detect_right: Area2D = $"../opp_detect_right"
 @onready var up_left: Marker2D = $"../up_left"
 @onready var up_right: Marker2D = $"../up_right"
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 
 
@@ -127,6 +128,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_ball_collided_body_entered(body: Node2D) -> void:
 	recovering = true
+	audio_stream_player.play()
 	
 
 

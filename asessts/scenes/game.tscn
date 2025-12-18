@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmva1i8iehd3b"]
+[gd_scene load_steps=17 format=3 uid="uid://bmva1i8iehd3b"]
 
 [ext_resource type="Script" uid="uid://gs7w7iiwgsu8" path="res://asessts/scripts/game.gd" id="1_4nptb"]
 [ext_resource type="PackedScene" uid="uid://cs808uh8ckwel" path="res://asessts/scenes/player.tscn" id="1_qat0m"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://di8yqauwds2vq" path="res://asessts/sprites/New Piskel (2).png" id="3_vyx73"]
 [ext_resource type="PackedScene" uid="uid://dxpvgjseo0pf6" path="res://asessts/scenes/opp.tscn" id="3_y0ob4"]
 [ext_resource type="PackedScene" uid="uid://l8lq2bnpbpwe" path="res://asessts/ball.tscn" id="3_ymrpe"]
+[ext_resource type="AudioStream" uid="uid://cp0mfrhgwyv7s" path="res://asessts/sound/tennis-ball-hit-151257.mp3" id="7_nm838"]
+[ext_resource type="AudioStream" uid="uid://bwesidw2kasdb" path="res://asessts/sound/techno-loop-273137.mp3" id="8_1xg61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xg61"]
 size = Vector2(1074, 15)
@@ -136,6 +138,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="reset_zone"]
 position = Vector2(327, 871)
 shape = SubResource("RectangleShape2D_ujr7e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nm838")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1xg61")
+autoplay = true
 
 [connection signal="body_entered" from="score" to="player" method="_on_score_body_entered"]
 [connection signal="body_entered" from="opp/opp_detect_left" to="opp" method="_on_opp_detect_left_body_entered"]

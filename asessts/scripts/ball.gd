@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var player: CharacterBody2D = $"../player"
 #@onready var ball_col: BallCollision = $"../player/ball_col"
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 const SPEED: int = 8
 
@@ -26,6 +27,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("hit"):
 			#print("Collison success")
 			can_bounce = true
+			audio_stream_player.play()
 			var direction = Vector2.RIGHT.rotated(player.get_node("Marker2D").global_rotation)
 			velocity = direction * SPEED
 	
